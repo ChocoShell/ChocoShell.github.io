@@ -1,5 +1,5 @@
 baseURL = "https://example.com"
-title = "Blonde"
+title = "Yet Another Blog"
 author = "wamo"
 languageCode = "en"
 DefaultContentLanguage = "en"
@@ -19,7 +19,7 @@ enableRobotsTXT = true
 [params]
 # Base color of the website.
 # https://tailwindcss.com/docs/background-color
-base_color = "bg-gray-800"
+base_color = "bg-slate-900"
 
 #Site description
 description = "Blonde theme for Hugo."
@@ -28,7 +28,7 @@ description = "Blonde theme for Hugo."
 paginator_pages = "5"
 
 # Enable this if you want the archive list to be in a drop-down format.
-archive_dropdown = "false"
+archive_dropdown = "true"
 
 # Number of tags to be displayed.
 tagsLimit = 20
