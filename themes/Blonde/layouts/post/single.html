@@ -26,7 +26,12 @@
           </div>
         </aside>
         {{ if .Params.image }}
-        <img class="py-4" src="{{ .Params.image | absURL }}">
+        <figure class="grid-cols-1">
+          <img class="py-4" src="{{ .Params.image | absURL }}">
+          {{ if .Params.image_caption }}
+          <figcaption class="justify-center">{{ .Params.image_caption | markdownify }}</figcaption>
+          {{ end }}
+        </figure>
         {{ end }}
         {{ if and (and (.Site.Params.ad.googleAdSense) (.Site.Params.ad.postTop)) (.Site.Params.ad.adslot) }}
         <ins class="adsbygoogle" style="display:block" data-ad-client="{{.Site.Params.ad.googleAdSense}}"
@@ -35,7 +40,7 @@
           (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
         {{ end }}
-        <div class="prose md:prose-lg lg:prose-xl max-w-none dark:prose-invert mt-5">{{.Content}}</div>
+        <div class="prose md:prose-lg lg:prose-xl max-w-none dark:prose-invert mt-5">{{ .Content | emojify }}</div>
         {{ if and (and (.Site.Params.ad.googleAdSense) (.Site.Params.ad.postBottom)) (.Site.Params.ad.adslot) }}
         <ins class="adsbygoogle" style="display:block" data-ad-client="{{.Site.Params.ad.googleAdSense}}"
           data-ad-slot="{{.Site.Params.ad.adslot}}" data-ad-format="auto" data-full-width-responsive="true"></ins>
@@ -79,11 +84,13 @@
           {{ end }}
         </div>
       </div>
+      {{ if .Site.Params.disqusShortname }}
       <div class="bg-white dark:bg-warmgray-900 p-5 my-4">
         <div class="mb-3">
           {{ template "_internal/disqus.html" . }}
         </div>
       </div>
+      {{ end }}
     </div>
     {{ if .Site.Params.widgets.display }}
     {{ partial "widgets.html" . }}
