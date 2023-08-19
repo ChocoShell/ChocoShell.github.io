@@ -18,8 +18,11 @@
             {{ with .Params.tags }}
             <div id="tags">
               <span class="icon-local_offer mr-1"></span>
-              {{ range . }}
-              <a href='{{ "tags" | absURL }}/{{ . | urlize }}'>{{ . }}</a> |
+              {{ range first 1 .}}
+              <a href='{{ "tags" | absURL }}/{{ . | urlize }}'>{{ . }}</a>
+              {{ end }}
+              {{ range after 1 . }}
+              | <a href='{{ "tags" | absURL }}/{{ . | urlize }}'>{{ . }}</a> 
               {{ end }}
             </div>
             {{ end }}

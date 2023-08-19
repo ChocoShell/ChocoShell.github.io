@@ -153,6 +153,8 @@ Github should pick up on the actions in your `.github/workflows` and deploy the 
 - :white_square_button: Update About Page
 - :white_square_button: Update Contact Page
 - :white_square_button: Add copy code block button
+  - https://spdevuk.com/how-to-create-code-copy-button/
+  - https://www.dannyguo.com/blog/how-to-add-copy-to-clipboard-buttons-to-code-blocks-in-hugo/
 
 ### Closing Thoughts
 
