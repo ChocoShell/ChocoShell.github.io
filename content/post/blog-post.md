@@ -55,17 +55,25 @@ Dependencies:
 Followed this guide for this part: https://medium.com/@magstherdev/hugo-in-10-minutes-2dc4ac70ee11
 
 Git clone your new repo locally.
-```git clone <username>.github.io```
+```
+git clone <username>.github.io
+```
 
-```cd <username>.github.io```
+```
+cd <username>.github.io
+```
 
 In your new repo's directory, create the hugo site.
 
-```hugo new site . --force```
+```
+hugo new site . --force
+```
 
 and install a theme. Each theme will have instructions, but I like how [paperesque](https://github.com/capnfabs/paperesque) installed their theme which I will use to install the theme I used, [Blonde](https://github.com/opera7133/Blonde).
 
-```git subtree add --prefix themes/Blonde https://github.com/opera7133/Blonde master --squash```
+```
+git subtree add --prefix themes/Blonde https://github.com/opera7133/Blonde master --squash
+```
 
 Note: if you want to install other themes, you will need to change `themes/Blonde` to the theme you're downloading, update the github url, and update the main branch name (for Blonde it was `master`, for paperesque it was `mainline`, etc).
 
@@ -73,23 +81,27 @@ Copy the necessary files from the `Blonde/exampleSite` folder.  These are `packa
 
 Now, following the instructions on [Blonde](https://github.com/opera7133/Blonde), we can install our npm dependencies.
 
-```npm install```
+```
+npm install
+```
 
 Let's run the site!
 
-```npm run start```
+```
+npm run start
+```
 
 It should be running on `localhost:1313`
 
 The homepage should work but the about page and contact page will probably lead you to 404 pages.
 
 We can fix that by creating (or copying from the example site, to start with) an about.md file into `content/about.md` and for contact we can do the same or remove Contact from our hugo.toml file.
-```
-  [[menu.main]]
-    identifier = "contact"
-    name = "Contact"
-    url = "/contact/"
-    weight = 3
+```yaml
+[[menu.main]]
+  identifier = "contact"
+  name = "Contact"
+  url = "/contact/"
+  weight = 3
 ```
 
 We can also add sections in the same way.
@@ -140,6 +152,7 @@ Github should pick up on the actions in your `.github/workflows` and deploy the 
 - :white_square_button: Create a Real Name for the Blog
 - :white_square_button: Update About Page
 - :white_square_button: Update Contact Page
+- :white_square_button: Add copy code block button
 
 ### Closing Thoughts
 
