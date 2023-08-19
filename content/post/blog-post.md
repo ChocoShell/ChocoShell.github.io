@@ -46,9 +46,78 @@ Dependencies:
 
 ### Creating my Repo
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I started by creating a new repo for the blog.  The github pages guide recommends using this convention `<username>.github.io` for the repo name. Once created, we can initialize it with an empty `README.md` file so that we can change the repo settings to prepare it for the github pages deploy.  We can now go to our repo and click the `Settings` tab at the top, followed by the `Pages` tab under the `Code and Automation` section and finally, changing the `Source` from `Deploy from as branch` to `Github Actions`. Now, github will read from our `.github/workflows/` folder to see how it should deploy the site.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I started by creating a new repo for the blog.  The github pages guide recommends using this convention `<username>.github.io` for the repo name with `<username>` being your username without the angled brackets. Once created, we can initialize it with an empty `README.md` file so that we can change the repo settings to prepare it for the github pages deploy.  We can now go to our repo and click the `Settings` tab at the top, followed by the `Pages` tab under the `Code and Automation` section and finally, changing the `Source` from `Deploy from as branch` to `Github Actions`. Now, github will read from our `.github/workflows/` folder to see how it should deploy the site.
 
 ![Github Actions Settings Page](/img/github_pages.png)
+
+### Creating the Blog
+
+Followed this guide for this part: https://medium.com/@magstherdev/hugo-in-10-minutes-2dc4ac70ee11
+
+Git clone your new repo locally.
+```git clone <username>.github.io```
+
+```cd <username>.github.io```
+
+In your new repo's directory, create the hugo site.
+
+```hugo new site . --force```
+
+and install a theme. Each theme will have instructions, but I like how [paperesque](https://github.com/capnfabs/paperesque) installed their theme which I will use to install the theme I used, [Blonde](https://github.com/opera7133/Blonde).
+
+```git subtree add --prefix themes/Blonde https://github.com/opera7133/Blonde master --squash```
+
+Note: if you want to install other themes, you will need to change `themes/Blonde` to the theme you're downloading, update the github url, and update the main branch name (for Blonde it was `master`, for paperesque it was `mainline`, etc).
+
+Copy the necessary files from the `Blonde/exampleSite` folder.  These are `package.json`, `postcss.config.js`, `config.toml` (rename this `hugo.toml`), and `tailwind.config.js`.
+
+Now, following the instructions on [Blonde](https://github.com/opera7133/Blonde), we can install our npm dependencies.
+
+```npm install```
+
+Let's run the site!
+
+```npm run start```
+
+It should be running on `localhost:1313`
+
+The homepage should work but the about page and contact page will probably lead you to 404 pages.
+
+We can fix that by creating (or copying from the example site, to start with) an about.md file into `content/about.md` and for contact we can do the same or remove Contact from our hugo.toml file.
+```
+  [[menu.main]]
+    identifier = "contact"
+    name = "Contact"
+    url = "/contact/"
+    weight = 3
+```
+
+We can also add sections in the same way.
+
+We can create posts on this blog by making new markdown files under `content/post/some-post-name.md`
+
+
+### Deploying the Blog
+
+Now that we created the blog and added a post.  We need to tell github how to deploy our blog.
+
+Hugo has a good guide on this here: https://gohugo.io/hosting-and-deployment/hosting-on-github/
+
+The gist of it is:
+1. create a folder called `.github/` in the root of your repo
+2. create a folder inside the above folder called `workflows/`
+3. create a `hugo.yaml` file in the new folder above.
+4. Copy the [github actions code](https://gohugo.io/hosting-and-deployment/hosting-on-github/#.github/workflows/hugo.yaml) into the `hugo.yaml` file
+
+
+Commit these changes and push it to your repo.
+
+```
+git commit -am "Creating Blog"
+git push
+```
+
+Github should pick up on the actions in your `.github/workflows` and deploy the project in a couple of minutes.  You should then be able to go to `<username>.github.io` and see it deployed.
 
 ### Observations
 
